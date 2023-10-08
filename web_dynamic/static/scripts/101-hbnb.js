@@ -62,6 +62,23 @@ $('document').ready(function() {
         }
     });
 
+    $('h2:contains("Reviews") + span').click(function(){
+        const buttonText = $(this).text();
+        if (buttonText === 'hide') {
+            $('.Review').remove();
+            $(this).text('show');
+        }
+        else {
+            $.get(api + ':5001:/api/v1/reviews/', function(response) {
+                response.forEach(function(review) {
+                    const reviewElement = $('<div>').addClass('review').text(review.text);
+                    $('section.places').append(reviewElement);
+                });
+            });
+            $(this).text('hide');
+        }
+    });
+
     $('button').click(function () {
         $.ajax({
             url: api + '5001/api/v1/places_search/',

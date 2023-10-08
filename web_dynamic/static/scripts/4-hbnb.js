@@ -28,13 +28,13 @@ $('document').ready(function() {
         if (Object.values(amenities).length === 0) {
             $('amenities h4').html('&nbsp;');
         } else {
-            $('amenities h4').text(object.values(amenities).join(', '));
+            $('amenities h4').text(Object.values(amenities).join(', '));
         }
     });
 
     $('button').click(function () {
         $.ajax({
-            url: api + '5001/api/v1/places_search',
+            url: api + '5001/api/v1/places_search/',
             type: 'POST',
             data: JSON.stringify({'amenities': Object.keys(amenities) }),
             contentType: 'application/json',
